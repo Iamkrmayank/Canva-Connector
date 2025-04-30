@@ -1,15 +1,16 @@
+import os
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 festival_greetings = [
     {
-        "id": "diwali_card_001",  # Unique ID
+        "id": "diwali_card_001",
         "fields": {
             "greeting_prefix": "Happy",
             "festival_name": "Diwali",
             "message": "Let’s celebrate the festival of lights with joy in our hearts and peace in our homes.",
-            "footer": "@REALLYGREATSITE"
+            "footer": "@Suvichaar"
         }
     }
 ]
@@ -19,4 +20,5 @@ def get_festival_data():
     return jsonify({"items": festival_greetings})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # default to 5000 locally
+    app.run(host="0.0.0.0", port=port)
